@@ -16,7 +16,7 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 	@Autowired
 	private AlunoService alunoService;
 	
-	
+		
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
@@ -42,6 +42,19 @@ public class Init implements ApplicationListener<ContextRefreshedEvent> {
 		
 		List<Aluno> listaAlunos =  alunoService.buscarTodosAlunos();
 		listaAlunos.forEach(aluno -> System.out.println(aluno.getNome()));
+		
+		
+		//Boolean flag = alunoService.deleteAluno(1);
+		//System.out.println(flag);
+		
+		Aluno alunoAlterado = new Aluno();
+		
+		alunoAlterado.setEmail("luccas@gmail.com");
+		alunoAlterado.setNome("Luccas");
+		alunoAlterado.setSobreNome("Silva");
+		Aluno alunoAtualizado = alunoService.updateAluno(1, alunoAlterado);
+		System.out.println("Aluno alterado: " + alunoAtualizado.getEmail());
+		
 	}
 
 	
